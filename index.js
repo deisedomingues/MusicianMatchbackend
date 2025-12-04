@@ -20,8 +20,6 @@ pool.getConnection()
 
 // Rotas
 app.use(routes);
-app.use(musicoRoutes);
-app.use(avaliacaoRoutes);
 
 // Servidor
 app.listen(port, () => {
