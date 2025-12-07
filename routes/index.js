@@ -1,5 +1,4 @@
 // backend/routes/index.js
-
 import { Router } from "express";
 import userRoutes from "./userRoutes.js";
 import contratacaoRoutes from "./contratacaoRoutes.js";
@@ -26,3 +25,4 @@ routes.use("/avaliacoes", avaliacaoRoutes);
 routes.use("/musicos", musicoRoutes);
 
 export default routes;
+

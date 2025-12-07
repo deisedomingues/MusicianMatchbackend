@@ -1,50 +1,45 @@
+// backend/routes/userRoutes.js
 import { Router } from "express";
 import { UserController } from "../controllers/userController.js";
 import { autenticarToken } from "../utils/authenticationToken.js";
-// import {
-//   solicitarRedefinicaoSenha,
-//   resetarSenha,
-// } from "../controllers/recuperarsenhaController.js";
 
-const routes = Router();
+const router = Router();
 const userController = new UserController();
 
 /**
- * Rota POST /register
- * Cadastra um novo usuário na base de dados
+ * POST /register
+ * Cadastra um novo usuário
  */
-
-routes.post("/register", userController.create);
+router.post("/register", userController.create);
 
 /**
- * Rota GET /
+ * GET /users
  * Lista todos os usuários
  */
-
-routes.get("/users", userController.read);
+router.get("/users", userController.read);
 
 /**
- * Rota GET /
- * Lista um usuario especifico pelo CPF
+ * GET /users/:cpf
+ * Busca um usuário específico pelo CPF
  */
-routes.get("/users/:cpf", userController.getByCpf);
+router.get("/users/:cpf", userController.getByCpf);
 
 /**
  * POST /login
- * Autentica o usuário e retorna um token JWT.
+ * Autentica o usuário e retorna um token JWT
  */
-routes.post("/login", userController.login);
+router.post("/login", userController.login);
 
 /**
- * PUT /profile
- * Atualiza os dados de um usuario especifico
+ * PUT /profile/:cpf
+ * Atualiza os dados de um usuário específico
  */
-routes.put("/profile/:cpf", autenticarToken, userController.update);
+router.put("/profile/:cpf", autenticarToken, userController.update);
 
 /**
- * DELETE /profile
- * Deleta os dados de um usuario especifico
+ * DELETE /profile/:cpf
+ * Deleta os dados de um usuário específico
  */
-routes.delete("/profile/:cpf", autenticarToken, userController.delete);
+router.delete("/profile/:cpf", autenticarToken, userController.delete);
 
-export default routes;
+export default router;

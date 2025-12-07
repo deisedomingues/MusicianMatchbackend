@@ -1,35 +1,26 @@
-import express from "express";
-import cors from "cors";
-import routes from "./routes/index.js";
-import pool from "./database/connection.js";
-import musicoRoutes from "./routes/musicoRoutes.js";
-import avaliacaoRoutes from "./routes/avaliacaoRoutes.js";
+import { Router } from "express";
+import userRoutes from "./userRoutes.js";
+import contratacaoRoutes from "./contratacaoRoutes.js";
+import avaliacaoRoutes from "./avaliacaoRoutes.js";
+import musicoRoutes from "./musicoRoutes.js";
 
-const app = express();
+const routes = Router();
 
-// Render (e outros serviços) geralmente fornecem a porta via variável de ambiente
-const PORT = process.env.PORT || 3000;
-
-app.use(cors());
-app.use(express.json());
-
-// Testa conexão com MySQL
-(async () => {
-  try {
-    const conn = await pool.getConnection();
-    console.log("✅ Conectado ao MySQL com sucesso!");
-    conn.release(); // libera a conexão para não ficar presa
-  } catch (err) {
-    console.error("❌ Erro ao conectar ao MySQL:", err);
-  }
-})();
-
-// Rotas
-app.use(routes);
-app.use("/musicos", musicoRoutes);
-app.use("/avaliacoes", avaliacaoRoutes);
-
-// Inicializa servidor
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+// Rota inicial de teste
+routes.get("/", (req, res) => {
+  return res.json("Back - MusicianMatch");
 });
+
+// Rotas de usuários
+routes.use(userRoutes);
+
+// Rotas de contratações
+routes.use("/contratacoes", contratacaoRoutes);
+
+// Rotas de avaliações
+routes.use("/avaliacoes", avaliacaoRoutes);
+
+// Rotas de músicos
+routes.use("/musicos", musicoRoutes);
+
+export default routes;

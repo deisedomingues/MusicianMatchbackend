@@ -1,13 +1,15 @@
+// backend/routes/musicoRoutes.js
 import { Router } from "express";
 import pool from "../database/connection.js";
 
-const routes = Router();
+const router = Router();
 
 /**
- * GET /musicos
+ * GET /
  * Lista todos os músicos com dados do usuário
+ * Rota final: GET /musicos
  */
-routes.get("/musicos", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const [rows] = await pool.query(`
       SELECT 
@@ -30,10 +32,11 @@ routes.get("/musicos", async (req, res) => {
 });
 
 /**
- * GET /musicos/:cpf
+ * GET /:cpf
  * Busca um músico específico pelo CPF
+ * Rota final: GET /musicos/:cpf
  */
-routes.get("/musicos/:cpf", async (req, res) => {
+router.get("/:cpf", async (req, res) => {
   const { cpf } = req.params;
   try {
     const [rows] = await pool.query(`
@@ -61,4 +64,4 @@ routes.get("/musicos/:cpf", async (req, res) => {
   }
 });
 
-export default routes;
+export default router;
