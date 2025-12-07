@@ -26,8 +26,8 @@ app.use(express.json());
 
 // Rotas
 app.use(routes);
-app.use(musicoRoutes);
-app.use(avaliacaoRoutes);
+app.use("/musicos", musicoRoutes);
+app.use("/avaliacoes", avaliacaoRoutes);
 
 // Inicializa servidor
 app.listen(PORT, () => {
