@@ -1,3 +1,4 @@
+// backend/routes/index.js
 import { Router } from "express";
 import userRoutes from "./userRoutes.js";
 import contratacaoRoutes from "./contratacaoRoutes.js";
@@ -12,7 +13,7 @@ routes.get("/", (req, res) => {
 });
 
 // Rotas de usuários
-routes.use(userRoutes);
+routes.use("/users", userRoutes);
 
 // Rotas de contratações
 routes.use("/contratacoes", contratacaoRoutes);
