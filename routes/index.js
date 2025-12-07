@@ -25,4 +25,3 @@ routes.use("/avaliacoes", avaliacaoRoutes);
 routes.use("/musicos", musicoRoutes);
 
 export default routes;
-
