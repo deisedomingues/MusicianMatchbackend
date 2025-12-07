@@ -1,0 +1,10 @@
+# Node
+node_modules/
+
+# Env
+.env
+
+# Certificados SSL
+backend/certs/
+
+*.pem
