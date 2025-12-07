@@ -4,6 +4,9 @@ import userRoutes from "./userRoutes.js";
 import contratacaoRoutes from "./contratacaoRoutes.js";
 import avaliacaoRoutes from "./avaliacaoRoutes.js";
 import musicoRoutes from "./musicoRoutes.js";
+import routes from "./routes/index.js"; 
+
+app.use(routes);
 
 const routes = Router();
 
