@@ -8,8 +8,6 @@ import routes from "./routes/index.js";
 
 app.use(routes);
 
-const routes = Router();
-
 // Rota inicial de teste
 routes.get("/", (req, res) => {
   return res.json("Back - MusicianMatch");
